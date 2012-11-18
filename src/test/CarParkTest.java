@@ -19,7 +19,7 @@ public class CarParkTest extends TestCase {
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		super.setUp();
-		cp = new CarPark();
+		cp = new CarPark(20);
 		car = new Car(id);
 	}
 	@Test
@@ -27,18 +27,18 @@ public class CarParkTest extends TestCase {
 		//String id = "A";
 		//Car car = new Car(id);
 		//CarPark cp = new CarPark();
-		boolean b = cp.stopCar(car);
-		Assert.assertEquals(299, cp.getEmptySpace());
+		Ticket t = cp.stopCar(car);
 		Assert.assertEquals("A", cp.getCarInstance(0).getCar_id());
+		
 	}
 	@Test
 	public void test_get_car(){
 //		String id = "A";
 //		Car car = new Car(id);
 	//	CarPark cp = new CarPark();
-		boolean b = cp.stopCar(car);
-		boolean c = cp.getCar(id);
-		Assert.assertEquals(300, cp.getEmptySpace());
+		Ticket t = cp.stopCar(car);
+		boolean c = cp.getCar(t);
+		Assert.assertEquals(20, cp.getEmptySpace());
 	}
 	@Test
 	public void test_stop_when_full(){
@@ -46,7 +46,7 @@ public class CarParkTest extends TestCase {
 //		Car car = new Car(id);
 		//CarPark cp = new CarPark();
 		cp.setEmptyspace(0);
-		Assert.assertEquals(false, cp.stopCar(car));	
+		Assert.assertEquals(null, cp.stopCar(car));	
 		
 	}
 	
@@ -56,15 +56,16 @@ public class CarParkTest extends TestCase {
 //		Car car = new Car(id);
 	//	CarPark cp = new CarPark();
 		cp.setEmptyspace(300);
-		Assert.assertEquals(false, cp.getCar(id));
+		Assert.assertEquals(false, cp.getCar(car));
 	}
 	@Test
 	public void test_get_wrong_car(){
 //		String id = "A";
 //		Car car = new Car(id);
 	//	CarPark cp = new CarPark();
-		boolean b = cp.stopCar(car);
-		boolean c = cp.getCar("B");
+		Ticket t = cp.stopCar(car);
+		Car carc = new Car("C");
+		boolean c = cp.getCar(carc);
        Assert.assertEquals(false, c)	;	
 	}
    @Test
@@ -75,22 +76,15 @@ public class CarParkTest extends TestCase {
 	   Car carc = new Car("C");
 	   Car card = new Car("D");
 	   cp.stopCar(carb);
-	   Assert.assertEquals(true,cp.isCarIn("B"));
-	   Assert.assertEquals(false,cp.isCarIn("C"));
-	   Assert.assertEquals(298, cp.getEmptySpace());
-	   cp.getCar("A");
-	   Assert.assertEquals(false,cp.isCarIn("A"));
+	   Assert.assertEquals(true,cp.isCarIn(carb));
+	   Assert.assertEquals(false,cp.isCarIn(carc));
+	   cp.getCar(car);
+	   Assert.assertEquals(false,cp.isCarIn(card));
 	   cp.stopCar(card);
 	   cp.stopCar(carc);
-	   Assert.assertEquals(297, cp.getEmptySpace());
-	   cp.getCar("D");
-	   cp.getCar("B");
-	   cp.getCar("C");
-	   Assert.assertEquals(300, cp.getEmptySpace());
+	   cp.getCar(card);
+	   cp.getCar(carb);
+	   cp.getCar(carc);
    }
-   @Test
-   public void test_generate_ticket()
-   {
-	   Ticket tk = new Ticket();
-   }
+  
 }

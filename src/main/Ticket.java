@@ -1,19 +1,19 @@
 package main;
 
 public class Ticket {
-	private String car_id;
+	private Car car;
 	private int ticket_id;
 	
-	public Ticket(String s ,int i)
+	public Ticket(Car c ,int i)
 	{
-		this.car_id = s;
+		this.car = c;
 		this.ticket_id = i;
 	}
-	public String getCar_id() {
-		return car_id;
+	public Car getCar() {
+		return car;
 	}
-	public void setCar_id(String car_id) {
-		this.car_id = car_id;
+	public void setCar(Car car) {
+		this.car = car;
 	}
 	public int getTicket_id() {
 		return ticket_id;
