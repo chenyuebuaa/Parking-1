@@ -8,6 +8,7 @@ public class CarPark {
 	private int emptyspace;	
 	private int[] flag_carpark = new int[totalnumber];
 	private Map<Ticket,Car>  car_ticket_list= new HashMap<Ticket, Car>();	
+	private int name;
 	public CarPark(){
 		this.emptyspace=totalnumber;
 	}
@@ -19,7 +20,7 @@ public class CarPark {
 		return this.emptyspace;
 	}	
 	private Ticket generateTicket(int i) {
-		Ticket tk = new Ticket(i);
+		Ticket tk = new Ticket(i,this.name);
 		return tk;
 	}	
 	public Ticket stopCarMap(Car car)
@@ -35,7 +36,6 @@ public class CarPark {
 					this.flag_carpark[i]=1;
 					break;
 				}					
-		
 			this.emptyspace--;
 			return t;
 		} 		
@@ -67,6 +67,12 @@ public class CarPark {
 	}	
 	public void setEmptyspace(int emptyspace) {
 		this.emptyspace = emptyspace;
+	}
+	public int getName() {
+		return name;
+	}
+	public void setName(int name) {
+		this.name = name;
 	}
 }
  
