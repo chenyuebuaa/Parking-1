@@ -3,51 +3,35 @@ package main;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ParkingManagement {
+public class ParkingManagement  {
 
-	private List<CarPark> park_list= new ArrayList<CarPark>(); 	
+	protected List<CarPark> park_list= new ArrayList<CarPark>(); 
+	private ParkingStrategy ps;
 
-	public ParkingManagement() {
+	
+
+	public void setPs(ParkingStrategy ps) {
+		this.ps = ps;
+	}
+	
+	public ParkingStrategy getPs() {
+		return ps;
+	}
+
+	public ParkingManagement(ParkingStrategy ps) {
 		// TODO Auto-generated constructor stub
+		this.ps = ps;
 	}
-
-
-	public Ticket parking(Car car) {
-		// TODO Auto-generated method stub
-		for(int i=0;i<this.park_list.size();i++)
-		{
-						if(this.park_list.get(i).getEmptySpace()!=0)
-			{
-				Ticket t1 = this.park_list.get(i).stopCarMap(car);
-				return t1;
-			}
-			
-			
-		}
-		return null;
-	}
-	public Ticket parkingbetter(Car car) {
-		// TODO Auto-generated method stub
-		int max=0;
-		int b=0;
-		for(int i=0;i<this.park_list.size();i++)
-		{
-						
-			if(this.park_list.get(i).getEmptySpace()>max)
-			{
-				max=this.park_list.get(i).getEmptySpace();
-				b=i;
-			}
-		}
-		if(max>0)
-		{
-			
-				Ticket t1 = this.park_list.get(b).stopCarMap(car);
-				return t1;
-		}
-		else
-		return null;
-	}
+    
+    public Ticket parking(Car car)
+    {
+    	CarPark cp =ps.findCarPark(this.park_list);
+    	if(cp!=null)
+    	{	Ticket t1 =cp.stopCarMap(car);
+    		return t1;
+    	}else return null;
+    	
+    }
 
 	public int getsize() {
 		// TODO Auto-generated method stub
@@ -70,6 +54,6 @@ public class ParkingManagement {
 				return park_list.get(i).getCarMap(t1);
 		}
 		return null;
-	}
+	}	
 
 }

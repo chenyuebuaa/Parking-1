@@ -6,6 +6,9 @@ import junit.framework.TestCase;
 import main.Car;
 import main.CarPark;
 import main.ParkingManagement;
+import main.ParkingOnFirst;
+import main.ParkingOnSmart;
+import main.ParkingStrategy;
 import main.Ticket;
 
 import org.junit.Assert;
@@ -18,18 +21,21 @@ public class CarParkTest extends TestCase {
 	private Car car;
 	private String id ="A";
 	private Ticket testt;
-	 ParkingManagement parkingboy;
+	private ParkingManagement parkingboy;
+	private ParkingStrategy ps;
+	 
 	@Override
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		super.setUp();
 		cp = new CarPark(20);
 		car = new Car(id);
-	//	testt = new Ticket(1);
 		cp1 = new CarPark(20);
-		 parkingboy = new ParkingManagement();
-		 parkingboy.addCarPark(cp);
-		 parkingboy.addCarPark(cp1);
+		ps = new ParkingOnFirst();
+		parkingboy = new ParkingManagement(ps);
+		parkingboy.addCarPark(cp);
+		parkingboy.addCarPark(cp1);
+		
 	}
 	@Test
 	public void test_stop_car() {
@@ -77,7 +83,7 @@ public class CarParkTest extends TestCase {
    @Test
    public void test_parkBoy_ShouldParkCar()
    {
-	   ParkingManagement parkingboy = new ParkingManagement();
+	   ParkingManagement parkingboy = new ParkingManagement(ps);
 	   parkingboy.addCarPark(cp);
 	   Ticket t1 = parkingboy.parking(car);
 	   Assert.assertEquals(cp.getName(), t1.getCarpark_id());
@@ -93,8 +99,7 @@ public class CarParkTest extends TestCase {
    
    @Test
    public void test_parking_when_two_not_full()
-   { 
-	   
+   { 	  
 	   Ticket t1 = parkingboy.parking(car);
 	   Assert.assertEquals(cp.getName(),t1.getCarpark_id()); 
    }
@@ -127,10 +132,12 @@ public class CarParkTest extends TestCase {
    @Test
    public void test_parkingboy_better_shopcar()
    {
+	   ps = new ParkingOnSmart();
+	   parkingboy.setPs(ps);
 	   cp.setEmptyspace(2);
 	   cp1.setEmptyspace(4);
-	   Ticket t1=parkingboy.parkingbetter(car);
-	   Assert.assertEquals(cp1.getEmptySpace(), 3);
+	   Ticket t1=parkingboy.parking(car);
+	   Assert.assertEquals(2,t1.getCarpark_id());
    }
   
 }

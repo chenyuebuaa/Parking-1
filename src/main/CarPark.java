@@ -1,20 +1,19 @@
 package main;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CarPark {
-	private final int   totalnumber=300;
+	private  int   totalnumber;	
 	private int emptyspace;	
-	private int[] flag_carpark = new int[totalnumber];
+	private int[] flag_carpark;
 	private Map<Ticket,Car>  car_ticket_list= new HashMap<Ticket, Car>();	
 	private int name;
-	public CarPark(){
-		this.emptyspace=totalnumber;
-	}
-	public CarPark(int emptyspace) {
+	
+	public CarPark(int totalnumber) {
 		super();
-		this.emptyspace = emptyspace;
+		this.emptyspace = totalnumber;
+		this.totalnumber = totalnumber;
+		this.flag_carpark = new int[totalnumber];
 	}
 	public int getEmptySpace() {
 		return this.emptyspace;
@@ -57,6 +56,9 @@ public class CarPark {
 			return car;
 		}		
 		return null;
+	}
+	public int getTotalnumber() {
+		return totalnumber;
 	}
 	public boolean isCarInMap(Car car)
 	{
