@@ -3,17 +3,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CarPark {
-	private  int   totalnumber;	
-	private int emptyspace;	
-	private int[] flag_carpark;
+	private  int   totalnumber;	//总停车位数
+	private int emptyspace;	//空余停车位数
 	private Map<Ticket,Car>  car_ticket_list= new HashMap<Ticket, Car>();	
-	private int name;
+	private int name;//停车场的名字（编号）
 	
 	public CarPark(int totalnumber) {
 		super();
 		this.emptyspace = totalnumber;
 		this.totalnumber = totalnumber;
-		this.flag_carpark = new int[totalnumber];
+	}
+	
+	public Ticket stopCar(Car car) throws NoPlaceException
+	{ 
+		Ticket t = null;
+		if(this.emptyspace==0)
+			throw new NoPlaceException();
+		else{		
+			t = generateTicket(0);
+			car_ticket_list.put(t, car);								
+			this.emptyspace--;
+			return t;
+		} 		
+	}	
+	public Car getCar(Ticket t) throws NoCarException
+	{
+		if(car_ticket_list.containsKey(t))
+		{ 
+			Car car = car_ticket_list.get(t);
+			this.emptyspace++;
+			car_ticket_list.remove(t);
+			return car;
+		}		
+		else throw new NoCarException();
 	}
 	public int getEmptySpace() {
 		return this.emptyspace;
@@ -22,41 +44,6 @@ public class CarPark {
 		Ticket tk = new Ticket(i,this.name);
 		return tk;
 	}	
-	public Ticket stopCarMap(Car car)
-	{ 
-		Ticket t = null;
-		if(this.emptyspace==0)
-		return null;
-		else{
-			for(int i=0;i<totalnumber;i++)
-				if(this.flag_carpark[i]==0){
-					t = generateTicket(i);
-					car_ticket_list.put(t, car);
-					this.flag_carpark[i]=1;
-					break;
-				}					
-			this.emptyspace--;
-			return t;
-		} 		
-	}
-	public Car getCarInstanceByTicket(Ticket t)
-	{
-		if(car_ticket_list.containsKey(t))
-		return car_ticket_list.get(t);
-		return null;
-	}
-	public Car getCarMap(Ticket t)
-	{
-		if(car_ticket_list.containsKey(t))
-		{ 
-			Car car = car_ticket_list.get(t);
-			this.emptyspace++;
-			this.flag_carpark[t.getTicket_id()]=0;
-			car_ticket_list.remove(t);
-			return car;
-		}		
-		return null;
-	}
 	public int getTotalnumber() {
 		return totalnumber;
 	}

@@ -10,12 +10,12 @@ public class ParkingOnSuperSmart implements ParkingStrategy{
 		double maxparkingrate=0;
 		int b=0;
 		for(int i=0;i<parklist.size();i++)
-		{
-						
+		{						
 			if(parklist.get(i).getTotalnumber()!=0)
 			{
-				double parkingrate = (parklist.get(i).getEmptySpace()/parklist.get(i).getTotalnumber());
-				if(parkingrate>maxparkingrate){
+				double parkingrate = ((double)parklist.get(i).getEmptySpace()/parklist.get(i).getTotalnumber());
+				if(parkingrate>maxparkingrate)
+				{
 					maxparkingrate=parkingrate;
 					b=i;
 				}
