@@ -60,7 +60,5 @@ public class SuperParkingboyTest extends TestCase{
 		cp1.setEmptyspace(200);
 		Ticket t = parkingboy.stopCar(car);
 		Assert.assertEquals(t.getCarpark_id(), cp.getName());
-		Assert.assertEquals(49, cp.getEmptySpace());
-		Assert.assertEquals(200, cp1.getEmptySpace());
 	}
 }

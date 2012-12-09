@@ -14,8 +14,7 @@ public class ParkingOnFirst implements ParkingStrategy{
 			{
 				
 				return parklist.get(i);
-			}
-			
+			}			
 		}
 		return null;	
 }
