@@ -37,16 +37,10 @@ public class CarPark {
 		}		
 		else throw new NoCarException();
 	}
-	public int getEmptySpace() {
-		return this.emptyspace;
-	}	
 	private Ticket generateTicket(int i) {
 		Ticket tk = new Ticket(i,this.name);
 		return tk;
 	}	
-	public int getTotalnumber() {
-		return totalnumber;
-	}
 	public boolean isCarInMap(Car car)
 	{
 		if(car_ticket_list.containsValue(car))
@@ -54,9 +48,15 @@ public class CarPark {
 		else 
 			return false;
 	}	
+	public int getTotalnumber() {
+		return totalnumber;
+	}
 	public void setEmptyspace(int emptyspace) {
 		this.emptyspace = emptyspace;
 	}
+	public int getEmptySpace() {
+		return this.emptyspace;
+	}	
 	public int getName() {
 		return name;
 	}

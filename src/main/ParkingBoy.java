@@ -7,6 +7,8 @@ public class ParkingBoy  {
 
 	protected List<CarPark> park_list= new ArrayList<CarPark>(); 
 	private ParkingStrategy parkingstrategy;
+	private int totalnumber;
+	private int emptyspace;
 
 	public ParkingBoy(ParkingStrategy ps) {
 		// TODO Auto-generated constructor stub
@@ -38,11 +40,6 @@ public class ParkingBoy  {
 		}
 		throw new NoCarException();
 	}	
-	
-	public int getsize() {
-		// TODO Auto-generated method stub
-		return this.park_list.size();
-	}
 
 	public void setParkingStrategy(ParkingStrategy ps) {
 		this.parkingstrategy = ps;
@@ -50,5 +47,32 @@ public class ParkingBoy  {
 	
 	public ParkingStrategy getParkingStrategy() {
 		return parkingstrategy;
+	}
+
+	public int getTotalnumber() {
+		int count = 0;
+		for(int i=0;i<this.park_list.size();i++)
+		{
+			count+=this.park_list.get(i).getTotalnumber();
+		}
+		totalnumber = count;
+		return totalnumber;
+	}
+	public int getEmptySpace() {
+		int count = 0;
+		for(int i=0;i<this.park_list.size();i++)
+		{
+			count+=this.park_list.get(i).getEmptySpace();
+		}
+		emptyspace = count;
+		return emptyspace;
+	}
+
+	public void setEmptyspace(int emptyspace) {
+		this.emptyspace = emptyspace;
+	}
+
+	public void setTotalnumber(int totalnumber) {
+		this.totalnumber = totalnumber;
 	}
 }
