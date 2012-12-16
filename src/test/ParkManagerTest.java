@@ -72,5 +72,4 @@ public class ParkManagerTest {
         Ticket t1=new Ticket(1,1);
         pm.getCar(t1);
     }
-
 }
