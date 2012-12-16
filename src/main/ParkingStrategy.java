@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface ParkingStrategy {
 
-	public CarPark findCarPark( List<CarPark> parklist );
+	public ParkingLot findCarPark( List<Component> park_list );
 
 }

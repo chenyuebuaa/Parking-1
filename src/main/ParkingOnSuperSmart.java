@@ -5,7 +5,7 @@ import java.util.List;
 public class ParkingOnSuperSmart implements ParkingStrategy{
 
 	@Override
-	public CarPark findCarPark(List<CarPark> parklist) {
+	public ParkingLot findCarPark(List<Component> parklist) {
 		// TODO Auto-generated method stub
 		double maxparkingrate=0;
 		int b=0;
@@ -23,7 +23,7 @@ public class ParkingOnSuperSmart implements ParkingStrategy{
 		}
 		if(maxparkingrate>0)
 		{		
-		 return parklist.get(b);				
+		 return (ParkingLot) parklist.get(b);				
 		}
 		else
 		return null;	
