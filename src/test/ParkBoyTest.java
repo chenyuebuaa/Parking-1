@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import main.Car;
-import main.CarPark;
+import main.ParkingLot;
 import main.NoCarException;
 import main.NoPlaceException;
 import main.ParkingBoy;
@@ -16,8 +16,8 @@ import junit.framework.TestCase;
 
 
 public class ParkBoyTest extends TestCase{
-	private CarPark cp;
-	private CarPark cp1;
+	private ParkingLot cp;
+	private ParkingLot cp1;
 	private Car car;
 	private String id ="A";
 	private ParkingBoy parkingboy;
@@ -27,13 +27,14 @@ public class ParkBoyTest extends TestCase{
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		super.setUp();
-		cp = new CarPark(20);
+		ParkingLot.numberofcarpark=1;
+		cp = new ParkingLot(20);
 		car = new Car(id);
-		cp1 = new CarPark(20);
+		cp1 = new ParkingLot(20);
 		ps = new ParkingOnFirst();
 		parkingboy = new ParkingBoy(ps);
-		parkingboy.addCarPark(cp);
-		parkingboy.addCarPark(cp1);
+		parkingboy.add(cp);
+		parkingboy.add(cp1);
 		
 	}
 	
@@ -41,35 +42,35 @@ public class ParkBoyTest extends TestCase{
 	   public void test_parkBoy_ShouldParkCar()
 	   {
 		   ParkingBoy parkingboy = new ParkingBoy(ps);
-		   parkingboy.addCarPark(cp);
-		   Ticket t1 = parkingboy.stopCar(car);
-		   Assert.assertEquals(cp.getName(), t1.getCarpark_id());
+		   parkingboy.add(cp);
+		   parkingboy.stopCar(car);
+		   Assert.assertEquals(cp.getEmptySpace(), cp.getTotalnumber()-1);
 	   }
 	   @Test (expected = NoPlaceException.class)
 	   public void test_parkcar_two_full()
 	   {
-		   cp.setEmptyspace(0);
-		   cp1.setEmptyspace(0);
+		   cp.setEmptySpace(0);
+		   cp1.setEmptySpace(0);
 		   parkingboy.stopCar(car);
 	   }
 	   
 	   @Test
 	   public void test_parking_when_two_not_full()
 	   { 	  
-		   Ticket t1 = parkingboy.stopCar(car);
-		   Assert.assertEquals(cp.getName(),t1.getCarpark_id()); 
+		   parkingboy.stopCar(car);
+		   Assert.assertEquals(cp.getEmptySpace(),cp.getTotalnumber()-1); 
 	   }
 	   @Test
 	   public void test_parking_when_one_full()
 	   {
-		   cp.setEmptyspace(0);
-		   Ticket t1 = parkingboy.stopCar(car);
-		   Assert.assertEquals(cp1.getName(),t1.getCarpark_id()); 
+		   cp.setEmptySpace(0);
+		   parkingboy.stopCar(car);
+		   Assert.assertEquals(cp1.getEmptySpace(),cp1.getTotalnumber()-1);
 	   }
 	   @Test
 	   public void test_parkingboy_getcar_one_full_one_notfull()
 	   {
-		   cp.setEmptyspace(0);
+		   cp.setEmptySpace(0);
 		   Ticket t1 = parkingboy.stopCar(car);
 		   Assert.assertEquals(car, parkingboy.getCar(t1));	     	   
 	   }
@@ -90,8 +91,8 @@ public class ParkBoyTest extends TestCase{
 	   {
 		   ps = new ParkingOnSmart();
 		   parkingboy.setParkingStrategy(ps);
-		   cp.setEmptyspace(2);
-		   cp1.setEmptyspace(4);
+		   cp.setEmptySpace(2);
+		   cp1.setEmptySpace(4);
 		   Ticket t1=parkingboy.stopCar(car);
 		   Assert.assertEquals(2,t1.getCarpark_id());
 	   }

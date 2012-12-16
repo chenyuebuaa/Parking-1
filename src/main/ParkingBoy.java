@@ -3,52 +3,63 @@ package main;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ParkingBoy  {
+public class ParkingBoy extends Component {
 
-	protected List<CarPark> park_list= new ArrayList<CarPark>(); 
+	protected List<Component> park_list= new ArrayList<Component>(); 
 	private ParkingStrategy parkingstrategy;
 	private int totalnumber;
 	private int emptyspace;
+	protected int name;
+	public static int numberofparkingboy=1;
 
 	public ParkingBoy(ParkingStrategy ps) {
 		// TODO Auto-generated constructor stub
 		this.parkingstrategy = ps;
+		this.name = ParkingBoy.numberofparkingboy;
+		ParkingBoy.numberofparkingboy++;
 	}
 	
-	public void addCarPark(CarPark cp) {
+	public void add(Component a) {
 		// TODO Auto-generated method stub
-		this.park_list.add(cp);
-		cp.setName(this.park_list.size());
+		this.park_list.add((ParkingLot)a);
+		}
+
+	public void remove(Component a) {
+		// TODO Auto-generated method stub
+		this.park_list.remove(a);
 	}
-    
-    public Ticket stopCar(Car car) throws NoPlaceException
+	
+    @Override
+    public Ticket stopCar(Car car) 
     {
-    	CarPark cp =parkingstrategy.findCarPark(this.park_list);
+    	ParkingLot cp =parkingstrategy.findCarPark(this.park_list);
     	if(cp!=null)
     	{	Ticket t1 =cp.stopCar(car);
     		return t1;
     	}else 
-    		throw new NoPlaceException();    	
+    		throw new NoPlaceException();       
     }
     
-	public Car getCar(Ticket t1) throws NoCarException {
+    @Override
+	public Car getCar(Ticket t1) {//throws NoCarException {
 		// TODO Auto-generated method stub
-		for(int i=0;i<this.park_list.size();i++)
-		{
-			if(t1.getCarpark_id()==park_list.get(i).getName())
-				return park_list.get(i).getCar(t1);
-		}
-		throw new NoCarException();
+    	ParkingLot cp=null;
+    	for(int i =0;i<this.park_list.size();i++)
+    	{
+    		cp = (ParkingLot)park_list.get(i);
+    		if(t1.getCarpark_id()==cp.name)
+                return cp.getCar(t1);
+            else          
+            	cp = null;
+    	}
+    	throw new NoCarException();
 	}	
 
 	public void setParkingStrategy(ParkingStrategy ps) {
 		this.parkingstrategy = ps;
 	}
 	
-	public ParkingStrategy getParkingStrategy() {
-		return parkingstrategy;
-	}
-
+    @Override
 	public int getTotalnumber() {
 		int count = 0;
 		for(int i=0;i<this.park_list.size();i++)
@@ -57,7 +68,8 @@ public class ParkingBoy  {
 		}
 		totalnumber = count;
 		return totalnumber;
-	}
+	}    
+    @Override
 	public int getEmptySpace() {
 		int count = 0;
 		for(int i=0;i<this.park_list.size();i++)
@@ -67,12 +79,20 @@ public class ParkingBoy  {
 		emptyspace = count;
 		return emptyspace;
 	}
-
-	public void setEmptyspace(int emptyspace) {
-		this.emptyspace = emptyspace;
-	}
-
-	public void setTotalnumber(int totalnumber) {
-		this.totalnumber = totalnumber;
-	}
+	@Override
+	public void diplay(int depth) {
+		// TODO Auto-generated method stub
+		String str="";
+		for(int j=0;j<depth;j++)
+		{
+			str+=" ";
+		}
+		System.out.println(str+"停车仔编号："+this.name);
+		for(int i=0;i<this.park_list.size();i++)
+		{
+			this.park_list.get(i).diplay(depth+4);
+		}
+	    System.out.println(str+"    Total车位数: "+this.getTotalnumber());
+	    System.out.println(str+"    Total空位数: "+this.getEmptySpace());
+	}	
 }

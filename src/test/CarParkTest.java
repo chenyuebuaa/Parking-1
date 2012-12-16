@@ -4,7 +4,7 @@ package test;
 import junit.framework.TestCase;
 
 import main.Car;
-import main.CarPark;
+import main.ParkingLot;
 import main.NoCarException;
 import main.NoPlaceException;
 import main.Ticket;
@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class CarParkTest extends TestCase {
 
-	private CarPark cp;
+	private ParkingLot cp;
 	private Car car;
 	private String id ="A";
 	private Ticket testt;
@@ -23,7 +23,7 @@ public class CarParkTest extends TestCase {
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		super.setUp();
-		cp = new CarPark(20);
+		cp = new ParkingLot(20);
 		car = new Car(id);
 	}
 	@Test
@@ -40,13 +40,13 @@ public class CarParkTest extends TestCase {
 	}
 	@Test (expected = NoPlaceException.class)
 	public void test_stop_when_full() {
-		cp.setEmptyspace(0);
+		cp.setEmptySpace(0);
 		cp.stopCar(car);
 	}
 	
 	@Test (expected = NoCarException.class)
 	public void test_get_when_empty() {	
-		cp.setEmptyspace(300);
+		cp.setEmptySpace(300);
 		 cp.getCar(testt);
 	}
 }

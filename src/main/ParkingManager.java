@@ -3,72 +3,66 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class ParkingManager {
+public class ParkingManager extends Component{
 	private int totalnumber;	//总停车位数
 	private int emptyspace;	//空余停车位数
-	private String name;//
-	private List<ParkingBoy> list = new ArrayList<ParkingBoy>();
-	private List<CarPark> clist = new ArrayList<CarPark>();
+	protected int name;//
+	protected List<Component> park_list= new ArrayList<Component>(); 	
 	
-	public void addPerson(ParkingBoy parkingboy) {
+	public void add(Component a) {
 		// TODO Auto-generated method stub
-		this.list.add(parkingboy);
+		this.park_list.add(a);
 	}
-	public void addPlace(CarPark cp) {
-		// TODO Auto-generated method stub
-		this.clist.add(cp);
-	}
-	public Ticket stop1(Car car) {
-		// TODO Auto-generated method stub
-		Ticket t1 = this.clist.get(0).stopCar(car);
-		return t1;
-		
-	}
-	public Ticket stop2(Car car)
-	{
-		Ticket t1 = this.list.get(0).stopCar(car);
-		return t1;
-	}
+	@Override
+	public Ticket stopCar(Car car) {
+		// TODO Auto-generated method stub		
+		Ticket t1 = this.park_list.get(2).stopCar(car);
+		return t1;	/////////////////	
+	}	
+	@Override
 	public int getTotalnumber() {
 		int count = 0;
-		for(int i=0;i<list.size();i++)
+		for(int i=0;i<park_list.size();i++)
 		{
-			count+=list.get(i).getTotalnumber();
-		}
-		for(int i=0;i<this.clist.size();i++)
-		{
-			count+=clist.get(i).getTotalnumber();
+			count+=park_list.get(i).getTotalnumber();
 		}
 		totalnumber = count;
 		return totalnumber;
 	}
-	public void setTotalnumber(int totalnumber) {
-		this.totalnumber = totalnumber;
-	}
-	public void setEmptySpace(int emptyspace) {
-		this.emptyspace = emptyspace;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	@Override
 	public int getEmptySpace() {
 		// TODO Auto-generated method stub
 		int count = 0;
-		for(int i=0;i<list.size();i++)
+		for(int i=0;i<park_list.size();i++)
 		{
-			count+=list.get(i).getEmptySpace();
-		}
-		for(int i=0;i<this.clist.size();i++)
-		{
-			count+=clist.get(i).getEmptySpace();
+			count+=park_list.get(i).getEmptySpace();
 		}
 		emptyspace = count;
 		return emptyspace;
 	}
+	@Override
+	public void diplay(int depth) {
+		// TODO Auto-generated method stub
+		String str="";
+		for(int j=0;j<depth;j++)
+		{
+			str+=" ";
+		}
+		for(int i=0;i<this.park_list.size();i++)
+		{
+			this.park_list.get(i).diplay(depth);
+		}
+		 System.out.println(str+"Total: 车位数"+this.getTotalnumber());
+		 System.out.println(str+"Total: 空位数"+this.getEmptySpace());
+	}
 	
-
+	public void remove(Component a) {
+		// TODO Auto-generated method stub
+		this.park_list.remove(a);
+	}
+	@Override
+	public Car getCar(Ticket t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
