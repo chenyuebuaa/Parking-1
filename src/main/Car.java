@@ -16,13 +16,4 @@ public class Car {
 	public void setCar_id(String car_id) {
 		this.car_id = car_id;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((car_id == null) ? 0 : car_id.hashCode());
-		return result;
-	}
-
 }

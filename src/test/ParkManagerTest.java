@@ -41,8 +41,8 @@ public class ParkManagerTest {
     @Test (expected = NoPlaceException.class)
     public void test_pm_ask_parkingboy_stopcar_cp_full()
     {
-        cp.setEmptySpace(0);
-        pm.ask(parkingboy1).stopCar(car);
+        cp1.setEmptySpace(0);
+        pm.ask(parkingboy2).stopCar(car);
     }
     @Test
 	public void test_pm_stopcar_himself()
@@ -61,7 +61,7 @@ public class ParkManagerTest {
 	@Test
     public void test_pm_getcar()
     {
-        Ticket t1=pm.stopCar(car);
+        Ticket t1=pm.ask(parkingboy2).stopCar(car);
         int emptynum=pm.getEmptySpace();
         pm.getCar(t1);
         Assert.assertEquals(emptynum+1,pm.getEmptySpace());

@@ -3,10 +3,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot extends Component{
-	private  int   totalnumber;	//��ͣ��λ��
-	private int emptyspace;	//����ͣ��λ��
+	private  int   totalnumber;	//
+	private int emptyspace;	//
 	private Map<Ticket,Car>  car_ticket_list= new HashMap<Ticket, Car>();	
-	protected int name;//ͣ���������֣���ţ�
+	protected int name;//
 	public static int numberofcarpark=1;
 	
 	public ParkingLot(int totalnumber) {
@@ -48,13 +48,13 @@ public class ParkingLot extends Component{
 	public void diplay(int depth) {
 		// TODO Auto-generated method stub
 		String str="";
-		for(int j=0;j<depth;j++)
+		for(int j=0;j<depth-1;j++)
 		{
 			str+="\t";
 		}
 		System.out.println(str+"停车场编号: "+this.name);
-		System.out.println(str+"\t停车位: "+this.getTotalnumber());
-		System.out.println(str+"\t空车位: "+this.getEmptySpace());
+		System.out.println(str+"\t车位数: "+this.getTotalnumber());
+		System.out.println(str+"\t空位数: "+this.getEmptySpace());
 	}
 	@Override
 	public int getTotalnumber() {

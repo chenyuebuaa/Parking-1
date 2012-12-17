@@ -13,6 +13,14 @@ public class ParkingManager extends Component{
 		// TODO Auto-generated method stub
 		this.park_list.add(a);
 	}
+	public void remove(Component a) {
+		// TODO Auto-generated method stub
+		this.park_list.remove(a);
+	}
+	public ParkingBoy ask(ParkingBoy parkingboy) {
+	    //To change body of created methods use File | Settings | File Templates.
+	    return parkingboy;
+	}	
 	@Override
 	public Ticket stopCar(Car car) throws NoPlaceException{
 		// TODO Auto-generated method stub
@@ -26,6 +34,19 @@ public class ParkingManager extends Component{
         }
         throw new NoPlaceException();
 	}	
+	@Override
+	public Car getCar(Ticket t1) {
+		// TODO Auto-generated method stub
+		Car car = null;
+        for(int i =0;i<this.park_list.size();i++)
+        {       
+        	if((car=this.park_list.get(i).getCar(t1))!=null)
+        	{ 		
+        		return car;
+        	}          	
+        }
+        throw new NoCarException();
+	}
 	@Override
 	public int getTotalnumber() {
 		int count = 0;
@@ -46,41 +67,19 @@ public class ParkingManager extends Component{
 		}
 		emptyspace = count;
 		return emptyspace;
-	}
+	}	
 	@Override
 	public void diplay(int depth) {
 		// TODO Auto-generated method stub
 		String str="";
-		for(int j=0;j<depth;j++)
+		for(int j=0;j<depth-1;j++)
 		{
 			str+="\t";
 		}
 		for(int i=0;i<this.park_list.size();i++)
-		{
-			this.park_list.get(i).diplay(depth);
+		{			this.park_list.get(i).diplay(depth+1);
 		}
-		 System.out.println(str+"Total停车位: "+this.getTotalnumber());
-		 System.out.println(str+"Total空车位: "+this.getEmptySpace());
-	}
-	
-	public void remove(Component a) {
-		// TODO Auto-generated method stub
-		this.park_list.remove(a);
-	}
-	@Override
-	public Car getCar(Ticket t1) {
-		// TODO Auto-generated method stub
-        for(int i =0;i<this.park_list.size();i++)
-        {
-           return this.park_list.get(i).getCar(t1);
-        }
-        throw new NoCarException();
-	}
-
-    public ParkingBoy ask(ParkingBoy parkingboy) {
-        //To change body of created methods use File | Settings | File Templates.
-        return parkingboy;
-    }
-
-
+		 System.out.println(str+"Total车位数 "+this.getTotalnumber());
+		 System.out.println(str+"Total空位数 "+this.getEmptySpace());
+	}	
 }

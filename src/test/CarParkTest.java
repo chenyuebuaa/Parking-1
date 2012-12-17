@@ -1,7 +1,7 @@
 package test;
 
 
-import junit.framework.TestCase;
+
 import main.*;
 import org.junit.Assert;
 import org.junit.Before;

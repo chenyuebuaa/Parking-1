@@ -7,7 +7,7 @@ public class ParkingBoy extends Component {
 
 	protected List<Component> park_list= new ArrayList<Component>();
 
-     private ParkingStrategy parkingstrategy;
+    private ParkingStrategy parkingstrategy;
 	private int totalnumber;
 	private int emptyspace;
 	protected int name;
@@ -42,26 +42,29 @@ public class ParkingBoy extends Component {
     }
     
     @Override
-	public Car getCar(Ticket t1) throws NoCarException {
+	public Car getCar(Ticket t1) throws NoCarException 
+	{
 		// TODO Auto-generated method stub
     	ParkingLot cp=null;
     	for(int i =0;i<this.park_list.size();i++)
     	{
+    		
     		cp = (ParkingLot)park_list.get(i);
     		if(t1.getCarpark_id()==cp.name)
-                return cp.getCar(t1);
-            else          
-            	cp = null;
+    		{
+    			return cp.getCar(t1);
+    		}
     	}
-    	throw new NoCarException();
+    	return null;    	
 	}	
 
-	public void setParkingStrategy(ParkingStrategy ps) {
+	public void setParkingStrategy(ParkingStrategy ps) 
+	{
 		this.parkingstrategy = ps;
-	}
-	
+	}	
     @Override
-	public int getTotalnumber() {
+	public int getTotalnumber()
+    {
 		int count = 0;
 		for(int i=0;i<this.park_list.size();i++)
 		{
@@ -86,14 +89,15 @@ public class ParkingBoy extends Component {
 		String str="";
 		for(int j=0;j<depth;j++)
 		{
+			System.out.println(str+"停车仔编号: "+this.name);
 			str+="\t";
 		}
-		System.out.println(str+"停车仔编号: "+this.name);
+	//	System.out.println(str+"停车仔编号: "+this.name);
 		for(int i=0;i<this.park_list.size();i++)
 		{
 			this.park_list.get(i).diplay(depth+1);
 		}
-	    System.out.println(str+"\tTotal停车位: "+this.getTotalnumber());
-	    System.out.println(str+"\tTotal空车位: "+this.getEmptySpace());
+	    System.out.println(str+"Total车位数: "+this.getTotalnumber());
+	    System.out.println(str+"Total空位数: "+this.getEmptySpace());
 	}	
 }
