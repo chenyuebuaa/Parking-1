@@ -22,11 +22,9 @@ public class ParkingOnSuperSmart implements ParkingStrategy{
 			}
 		}
 		if(maxparkingrate>0)
-		{		
-		 return (ParkingLot) parklist.get(b);
-		}
+		     return (ParkingLot) parklist.get(b);
 		else
-		return null;	
+		    return null;
 }
 
 }

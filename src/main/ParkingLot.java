@@ -3,11 +3,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot extends Component{
-	private  int   totalnumber;	//
-	private int emptyspace;	//
-	private Map<Ticket,Car>  car_ticket_list= new HashMap<Ticket, Car>();	
-	protected int name;//
-	public static int numberofcarpark=1;
+
+    private Map<Ticket,Car>  car_ticket_list= new HashMap<Ticket, Car>();
+	private  int   totalnumber;	               //  车位数
+	private int emptyspace;	                  //      空位数
+	protected int name;                        //  编号
+	public static int numberofcarpark=1;    //对象计数器
 	
 	public ParkingLot(int totalnumber) {
 		this.emptyspace = totalnumber;
@@ -45,29 +46,26 @@ public class ParkingLot extends Component{
 		return tk;
 	}	
 	@Override
-	public void diplay(int depth) {
-		// TODO Auto-generated method stub
+	public String diplay(int depth) {
 		String str="";
+        String hole_table="";
 		for(int j=0;j<depth-1;j++)
 		{
 			str+="\t";
 		}
-		System.out.println(str+"停车场编号: "+this.name);
-		System.out.println(str+"\t车位数: "+this.getTotalnumber());
-		System.out.println(str+"\t空位数: "+this.getEmptySpace());
+        hole_table+=str+"停车场编号: "+this.name+"\n"+str+"\t车位数: "+this.getTotalnumber()
+                +"\n"+ str+"\t空位数: "+this.getEmptySpace()+"\n";
+        return hole_table;
 	}
 	@Override
 	public int getTotalnumber() {
-		// TODO Auto-generated method stub
 		return totalnumber;
 	}
 	@Override
 	public int getEmptySpace() {
-		// TODO Auto-generated method stub
 		return emptyspace;
 	}	
-	public void setEmptySpace(int emptyspace)
-	{
+	public void setEmptySpace(int emptyspace){
 		this.emptyspace = emptyspace;
 	}	
 }

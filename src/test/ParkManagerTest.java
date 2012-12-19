@@ -32,33 +32,33 @@ public class ParkManagerTest {
         ParkingLot.numberofcarpark=1;
         ParkingBoy.numberofparkingboy=1;
     }
-	@Test
+	@Test         //测试PM让停车仔停车
     public void test_pm_ask_parkingboy_stopcar()
     {
         pm.ask(parkingboy1).stopCar(car);
         Assert.assertEquals(19,parkingboy1.getEmptySpace());
     }
-    @Test (expected = NoPlaceException.class)
-    public void test_pm_ask_parkingboy_stopcar_cp_full()
+    @Test (expected = NoPlaceException.class)      //测试PM让停车仔停车，但是停车场已满
+    public void test_pm_ask_parking_boy_stop_car_cp_full()
     {
         cp1.setEmptySpace(0);
         pm.ask(parkingboy2).stopCar(car);
     }
-    @Test
-	public void test_pm_stopcar_himself()
+    @Test       //测试PM自己随机停车
+	public void test_pm_stop_car_himself()
 	{
 		pm.stopCar(car);
 		Assert.assertEquals(89, pm.getEmptySpace());
 	}
-    @Test (expected = NoPlaceException.class)
-    public void test_pm_stopcar_all_full_himself()
+    @Test (expected = NoPlaceException.class)    //测试PM管理的所有停车场已满时，停车
+    public void test_pm_stop_car_all_full_himself()
     {
         cp.setEmptySpace(0);
         cp1.setEmptySpace(0);
         cp2.setEmptySpace(0);
         pm.stopCar(car);
     }
-	@Test
+	@Test          //测试PM取车
     public void test_pm_getcar()
     {
         Ticket t1=pm.ask(parkingboy2).stopCar(car);
@@ -66,7 +66,7 @@ public class ParkManagerTest {
         pm.getCar(t1);
         Assert.assertEquals(emptynum+1,pm.getEmptySpace());
     }
-    @Test(expected = NoCarException.class)
+    @Test(expected = NoCarException.class)       //测试PM根据错票取车
     public void test_pm_getcar_nocar()
     {
         Ticket t1=new Ticket(1,1);

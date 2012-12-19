@@ -22,4 +22,10 @@ public class Ticket {
 		this.carpark_id = carpark_id;
 	}
 
+    @Override
+    public int hashCode() {
+        int result = ticket_id;
+        result = 31 * result + carpark_id;
+        return result;
+    }
 }

@@ -4,26 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingManager extends Component{
-	private int totalnumber;	//
-	private int emptyspace;	//
-	protected int name;//
-	protected List<Component> park_list= new ArrayList<Component>(); 	
+
+    protected List<Component> park_list= new ArrayList<Component>();
+    private int totalnumber;	//  车位数
+	private int emptyspace;	//   空位数
+	protected int name;      //  编号
 	
 	public void add(Component a) {
-		// TODO Auto-generated method stub
 		this.park_list.add(a);
 	}
 	public void remove(Component a) {
-		// TODO Auto-generated method stub
 		this.park_list.remove(a);
 	}
 	public ParkingBoy ask(ParkingBoy parkingboy) {
-	    //To change body of created methods use File | Settings | File Templates.
 	    return parkingboy;
 	}	
 	@Override
 	public Ticket stopCar(Car car) throws NoPlaceException{
-		// TODO Auto-generated method stub
         for(int i=0;i<this.park_list.size();i++)
         {
             if(this.park_list.get(i).getEmptySpace()!=0)
@@ -33,17 +30,14 @@ public class ParkingManager extends Component{
             }
         }
         throw new NoPlaceException();
-	}	
+    }
 	@Override
 	public Car getCar(Ticket t1) {
-		// TODO Auto-generated method stub
 		Car car = null;
         for(int i =0;i<this.park_list.size();i++)
         {       
         	if((car=this.park_list.get(i).getCar(t1))!=null)
-        	{ 		
         		return car;
-        	}          	
         }
         throw new NoCarException();
 	}
@@ -51,35 +45,30 @@ public class ParkingManager extends Component{
 	public int getTotalnumber() {
 		int count = 0;
 		for(int i=0;i<park_list.size();i++)
-		{
 			count+=park_list.get(i).getTotalnumber();
-		}
 		totalnumber = count;
 		return totalnumber;
 	}
 	@Override
 	public int getEmptySpace() {
-		// TODO Auto-generated method stub
 		int count = 0;
 		for(int i=0;i<park_list.size();i++)
-		{
 			count+=park_list.get(i).getEmptySpace();
-		}
 		emptyspace = count;
 		return emptyspace;
 	}	
 	@Override
-	public void diplay(int depth) {
-		// TODO Auto-generated method stub
+	public String diplay(int depth) {
 		String str="";
-		for(int j=0;j<depth-1;j++)
-		{
+        String hole_table="";
+		for(int j=0;j<depth;j++)
 			str+="\t";
-		}
 		for(int i=0;i<this.park_list.size();i++)
-		{			this.park_list.get(i).diplay(depth+1);
-		}
-		 System.out.println(str+"Total车位数 "+this.getTotalnumber());
-		 System.out.println(str+"Total空位数 "+this.getEmptySpace());
+        {
+             hole_table+=this.park_list.get(i).diplay(depth+1);
+        }
+        hole_table+= str+"Total车位数 "+this.getTotalnumber()+"\n"+
+                str+"Total空位数 "+this.getEmptySpace();
+        return hole_table;
 	}	
 }
