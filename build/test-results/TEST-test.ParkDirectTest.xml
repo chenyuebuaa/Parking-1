@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="PC104" name="test.ParkDirectTest" tests="3" time="0.016" timestamp="2012-12-21T05:17:26">
+  <properties />
+  <testcase classname="test.ParkDirectTest" name="test_pm_display" time="0.016" />
+  <testcase classname="test.ParkDirectTest" name="test_pl_display" time="0.0" />
+  <testcase classname="test.ParkDirectTest" name="test_pb_display" time="0.0" />
+  <system-out><![CDATA[停车场编号: 1
+	车位数: 20
+	空位数: 20
+停车仔编号: 9
+	停车场编号: 2
+		车位数: 30
+		空位数: 30
+	Total车位数: 30
+	Total空位数: 30
+停车仔编号: 10
+	停车场编号: 3
+		车位数: 40
+		空位数: 40
+	Total车位数: 40
+	Total空位数: 40
+停车仔编号: 11
+	停车场编号: 4
+		车位数: 50
+		空位数: 50
+	Total车位数: 50
+	Total空位数: 50
+Total车位数 140
+Total空位数 140
+
+停车场编号: 1
+	车位数: 20
+	空位数: 20
+
+
+停车场编号: 2
+	车位数: 30
+	空位数: 30
+停车场编号: 5
+	车位数: 15
+	空位数: 15
+Total车位数: 45
+Total空位数: 45
+
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

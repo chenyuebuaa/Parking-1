@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="PC104" name="test.ParkBoyTest" tests="8" time="0.078" timestamp="2012-12-21T05:17:26">
+  <properties />
+  <testcase classname="test.ParkBoyTest" name="test_parkingboy_getcar" time="0.0" />
+  <testcase classname="test.ParkBoyTest" name="test_parkingboy_super_stopcar" time="0.0" />
+  <testcase classname="test.ParkBoyTest" name="test_parkingboy_better_stopcar" time="0.0" />
+  <testcase classname="test.ParkBoyTest" name="test_parking_when_three_full" time="0.0" />
+  <testcase classname="test.ParkBoyTest" name="test_parkBoy_ShouldParkCar_inFirst" time="0.016" />
+  <testcase classname="test.ParkBoyTest" name="test_test_parkingboy_getcar_all_empty" time="0.0" />
+  <testcase classname="test.ParkBoyTest" name="test_parkingboy_getcar_wrong_ticket" time="0.0" />
+  <testcase classname="test.ParkBoyTest" name="test_parking_when_first_full_other_not_full" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="PC104" name="test.ParkingLotTest" tests="6" time="0.0" timestamp="2012-12-21T05:17:26">
+  <properties />
+  <testcase classname="test.ParkingLotTest" name="test_get_car_by_wrong_ticket" time="0.0" />
+  <testcase classname="test.ParkingLotTest" name="test_get_car_when_empty" time="0.0" />
+  <testcase classname="test.ParkingLotTest" name="test_get_car" time="0.0" />
+  <testcase classname="test.ParkingLotTest" name="test_show_number_of_empty_space" time="0.0" />
+  <testcase classname="test.ParkingLotTest" name="test_stop_when_full" time="0.0" />
+  <testcase classname="test.ParkingLotTest" name="test_stop_car" time="0.0" />
+  <system-out><![CDATA[剩余空车位：14
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

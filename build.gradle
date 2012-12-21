@@ -2,12 +2,8 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.7
 
-archiveBaseName = 'parkingLotsModel'
-
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Parking App', 'Implementation-Version': 1.0
-    }
+clean {
+    delete 'build', 'out'
 }
 
 dependencies {
@@ -29,6 +25,13 @@ sourceSets {
     }
 }
 
-clean {
-    delete 'build', 'out'
+jar {
+    manifest {
+        archiveName = 'parkingLotsModel.jar'
+        attributes 'Implementation-Title': 'Parking System', 'Implementation-Version': 1.0
+    }
 }
+repositories {
+    mavenCentral()
+}
+
